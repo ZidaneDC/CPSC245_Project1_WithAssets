@@ -42,7 +42,7 @@ public class Attacks : MonoBehaviour
 
     public void SpawnDragon()
     {
-        GameObject go2 = Instantiate(dragon, new Vector3(-10, 1, 0), Quaternion.identity);
+        GameObject go2 = Instantiate(dragon, new Vector3(-10, 2.26f, 0), Quaternion.identity);
         Rigidbody dragonRigidbody = go2.GetComponent<Rigidbody>();
         dragonRigidbody.AddForce(Vector3.right * 300f);
     }

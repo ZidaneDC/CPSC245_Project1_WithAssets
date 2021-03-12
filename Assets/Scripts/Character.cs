@@ -44,7 +44,10 @@ public class Character : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && canMove)
             shootFire();
         if (Input.GetKeyDown(KeyCode.W) && isGrounded && canMove)
+        {
+            //print("is pressing jump");
             jump();
+        }
         if (Input.GetKeyDown(KeyCode.S) && canMove)
             duck();
     }
@@ -85,7 +88,7 @@ public class Character : MonoBehaviour
         //character moving a certain height down
         if (canMove)
         {
-            dragon.transform.position = new Vector3(transform.position.x, 0.35f, transform.position.z);
+            //dragon.transform.position = new Vector3(transform.position.x, -0.1f, transform.position.z);
             dragon.transform.localScale = smallScale;
             StartCoroutine(waitForNormalSize());
         }
@@ -99,7 +102,7 @@ public class Character : MonoBehaviour
 
     private void GoToNormalSize()
     {
-        dragon.transform.position = new Vector3(transform.position.x, 0.58f, transform.position.z);
+        //dragon.transform.position = new Vector3(transform.position.x, -0.1f, transform.position.z);
         dragon.transform.localScale = bigScale;
     }
 
