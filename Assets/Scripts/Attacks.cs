@@ -10,7 +10,7 @@ public class Attacks : MonoBehaviour
  b. 2339699
  c. dtobin@chapman.edu  
  d. CPSC 245-01
- e. Eel Shooter - Milestone 2
+ e. Eel Shooter - Milestone 3
  f. This is my own work, and I did not cheat on this assignment.
   
 2. Attacks handles spawing both the waves and the dragons that can hurt your character.

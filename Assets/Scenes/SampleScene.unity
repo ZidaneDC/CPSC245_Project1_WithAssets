@@ -1630,7 +1630,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'DRAGON INCOMING!
+  m_Text: 'AIRSHIP INCOMING!
 
 '
 --- !u!222 &542134044
@@ -1710,7 +1710,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: BOMB EEL INCOMING!
+  m_Text: BOMB INCOMING!
 --- !u!222 &574905977
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2825,7 +2825,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: WAVE INCOMING!
+  m_Text: CAR INCOMING!
 --- !u!222 &1195141859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3026,7 +3026,7 @@ PrefabInstance:
     - target: {fileID: 7876173222290429861, guid: 0ce94c711cb9ac84fa9982a2824c3d4a,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7876173222290429862, guid: 0ce94c711cb9ac84fa9982a2824c3d4a,
         type: 3}
@@ -3037,6 +3037,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.50268626
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876173222290429862, guid: 0ce94c711cb9ac84fa9982a2824c3d4a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce94c711cb9ac84fa9982a2824c3d4a, type: 3}

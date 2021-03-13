@@ -10,7 +10,7 @@ public class ObjectPool : MonoBehaviour
  b. 002325417
  c. decantuaria@chapman.edu  
  d. CPSC 245-01
- e. Eel Shooter - Milestone 2
+ e. Eel Shooter - Milestone 3
  f. This is my own work, and I did not cheat on this assignment.
   
 2. ObjectPool is a class that creates a set of gameObjects to be used as targets that LevelLogic will activate and access for the player to hit.

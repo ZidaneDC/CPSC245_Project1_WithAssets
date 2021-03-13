@@ -12,7 +12,7 @@ public class LevelLogic : MonoBehaviour
  b. 002325417
  c. decantuaria@chapman.edu  
  d. CPSC 245-01
- e. Eel Shooter - Milestone 2
+ e. Eel Shooter - Milestone 3
  f. This is my own work, and I did not cheat on this assignment.
   
 2. LevelLogic keeps track of player objectives and progress in a level, behaviour once a target is hit, as well as spawning attacks and targets to hit at given intervals.
@@ -35,7 +35,7 @@ public class LevelLogic : MonoBehaviour
     float targetSpeed; //speed targets move at
     public List<Transform> spawnPoints;
 
-    List<string> objectiveOptions = new List<string>() { "red", "blue", "green", "yellow", "purple"}; //color options, bomb targets will be set to black
+    List<string> objectiveOptions = new List<string>() { "red", "blue", "green", "yellow", "cyan"}; //color options, bomb targets will be set to black
     System.Random random = new System.Random(); //for objective randomization
 
     public Attacks attacks;
@@ -66,7 +66,7 @@ public class LevelLogic : MonoBehaviour
     void Start()
     {
         //call game or ui class to display the level start panel
-        //SetOdds(); //determine objectives
+        SetLevelColor(); //determine objectives
         Debug.Log("Level Number: " + levelCount);
         Debug.Log("Objective Color: " + objectiveColor);
         UI.UpdateObjective(objectiveColor, objectiveCount, objectiveGoal);
@@ -82,7 +82,7 @@ public class LevelLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(objectiveCount == objectiveGoal)
+        if(objectiveCount >= objectiveGoal)
         {
             LevelComplete();
             levelCount += 1;
@@ -96,10 +96,11 @@ public class LevelLogic : MonoBehaviour
 
     public void Hit(GameObject hitObject)
     {
-        Debug.Log("Hit Registered");
+        
         Target hitTarget = hitObject.GetComponent<Target>();
-       //if the target is not the correct color
-       if(hitTarget.targetColor != objectiveColor)
+        Debug.Log(hitTarget.targetColor + " target hit!");
+        //if the target is not the correct color
+        if (hitTarget.targetColor != objectiveColor)
         {
             hitTarget.isHit = true;
             hitObject.SetActive(false);
@@ -108,6 +109,10 @@ public class LevelLogic : MonoBehaviour
         else
         {
             hitTarget.isHit = true;
+            if (hitTarget.isBomb == true)
+            {
+                DestroyAll();
+            }
             hitObject.SetActive(false);
             //add points and point multiplier
             levelScore += hitTarget.targetValue;
@@ -115,20 +120,61 @@ public class LevelLogic : MonoBehaviour
             UI.UpdateObjective(objectiveColor, objectiveCount, objectiveGoal);
             Debug.Log("Objective Count: " + objectiveCount + " / " + objectiveGoal);
         }
-
-        if (hitTarget.isBomb == true)
-        {
-            DestroyAll();
-        }
+       
     }
 
 
    
 
-    //SetOdds is a method that will set the chances of objectives and attacks spawning, DO THIS LAST
-    public void SetOdds()
+    //SetOdds is a method that sets the level objective
+    public void SetLevelColor()
     {
+        int i = random.Next(0, objectiveOptions.Count);
+        objectiveColor = objectiveOptions[i];
+        //add a line to update the objective indicator in the ui
 
+    }
+    
+    //SetTargetColor changes the color of a target
+    public void SetTargetColor(GameObject targetToColor)
+    {
+        //get component of objects renderer
+        //declare and intialize a color variable, have it be a random one from the list
+        //set both color variable and targets string variable to that color
+        int colorIndex = random.Next(0, objectiveOptions.Count);
+        Renderer targetRenderer = targetToColor.GetComponent<Renderer>();
+        Target targetScriptColor = targetToColor.GetComponent<Target>();
+
+
+        if(objectiveOptions[colorIndex] == "yellow")
+        {
+            targetRenderer.material.color = Color.yellow;
+            targetScriptColor.targetColor = "yellow";
+        }
+
+        else if (objectiveOptions[colorIndex] == "blue")
+        {
+            targetRenderer.material.color = Color.blue;
+            targetScriptColor.targetColor = "blue";
+        }
+
+        else if (objectiveOptions[colorIndex] == "red")
+        {
+            targetRenderer.material.color = Color.red;
+            targetScriptColor.targetColor = "red";
+        }
+
+        else if (objectiveOptions[colorIndex] == "cyan")
+        {
+            targetRenderer.material.color = Color.cyan;
+            targetScriptColor.targetColor = "cyan";
+        }
+
+        else if (objectiveOptions[colorIndex] == "green")
+        {
+            targetRenderer.material.color = Color.green;
+            targetScriptColor.targetColor = "green";
+        }
     }
 
     
@@ -157,7 +203,8 @@ public class LevelLogic : MonoBehaviour
 
                 launchTarget.gameObject.SetActive(true);
                 //to add in later: method that determines the odds of the target ebing the correct color
-                launchTarget.GetComponent<Target>().SetTargetValues(objectiveColor, targetSpeed, 100, false);
+                //launchTarget.GetComponent<Target>().SetTargetValues(objectiveColor, targetSpeed, 100, false);
+                SetTargetColor(launchTarget);
                 Rigidbody targetRigidBody = launchTarget.GetComponent<Rigidbody>();
                 launchTarget.gameObject.transform.position = PickSpawnLocation();
                 targetRigidBody.AddForce(Vector3.up* 50f);
@@ -195,10 +242,11 @@ public class LevelLogic : MonoBehaviour
     {
         //FIXME: shouldn't access all of the object pool, only the targets that are currently active
         foreach(GameObject targetToDisable in ObjectPool.pooledTargets){
-            if (gameObject.activeSelf)
+            if (gameObject.activeInHierarchy == true)
             {
                 targetToDisable.GetComponent<Target>().isHit = true;
                 targetToDisable.gameObject.SetActive(false);
+                objectiveCount += 1;
             }
         }
         
@@ -216,6 +264,7 @@ public class LevelLogic : MonoBehaviour
     public void LevelReset()
     {
         objectiveCount = 0;
+        SetLevelColor();
         if(levelCount == 2)
         {
             targetTimer = 6;

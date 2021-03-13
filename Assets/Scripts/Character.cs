@@ -11,7 +11,7 @@ public class Character : MonoBehaviour
  b. 2339699
  c. dtobin@chapman.edu  
  d. CPSC 245-01
- e. Eel Shooter - Milestone 2
+ e. Eel Shooter - Milestone 3
  f. This is my own work, and I did not cheat on this assignment.
   
 2. Character controls the character's movement, as well as its collision with attacks

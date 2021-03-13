@@ -10,7 +10,7 @@ public class Target : MonoBehaviour
  b. 002325417
  c. decantuaria@chapman.edu  
  d. CPSC 245-01
- e. Eel Shooter - Milestone 2
+ e. Eel Shooter - Milestone 3s
  f. This is my own work, and I did not cheat on this assignment.
   
 2. Target controls the properties and behaviour of the targets once hit. Information about targets will be passed into and from LevelLogic, which will determine and modify target properties.

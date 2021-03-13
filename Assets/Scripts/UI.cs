@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
@@ -12,7 +13,7 @@ a. Delaney Tobin
 b. 2339699
 c. dtobin@chapman.edu  
 d. CPSC 245-01
-e. Eel Shooter - Milestone 2
+e. Eel Shooter - Milestone 3
 f. This is my own work, and I did not cheat on this assignment.
 
 2. This class handles all the UI elements in the game.
@@ -83,10 +84,7 @@ f. This is my own work, and I did not cheat on this assignment.
 
     public void Restart()
     {
-        GameOverCanvasGroup.alpha = 0;
-        GameOverCanvasGroup.blocksRaycasts = false;
-        ResetGame();
-        LevelLogic.LevelReset();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ResumeGame()
@@ -100,6 +98,7 @@ f. This is my own work, and I did not cheat on this assignment.
 
     public void GameOverScreen()
     {
+        GameOverCanvasGroup.gameObject.SetActive(true);
         GameOverCanvasGroup.alpha = 1;
         GameOverCanvasGroup.blocksRaycasts = true;
     }
