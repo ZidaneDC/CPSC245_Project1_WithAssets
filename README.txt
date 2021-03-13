@@ -12,7 +12,7 @@
  b. 2339699
  c. dtobin@chapman.edu  
  d. CPSC 245-01
- e. Eel Shooter - Milestone 2
+ e. Eel Shooter - Milestone 3
  f. This is my own work, and I did not cheat on this assignment.
   
 2.) List of source files submitted
@@ -25,15 +25,13 @@ Attacks.cs
 UI.cs
 
 3) Description of any known compile/runtime errors, or bugs
-a. The game restarts once a game over is hit and the restart button is clicked,
-however the game over canvas will not disappear.
-b.Bomb functionality is not yet complete, however the game will alert the player
-when a target flagged as a bomb appears.
+a. N/A
 
 4.) References used to complete the assignment
 stackoverflow.com
 Unity documentation
 learn.unity.com
+https://www.youtube.com/watch?v=uOdJg4Ap3xM
 
 5.) Instructions for running the assignment
 1.) Load the assignment into Unity version 2019.4.9f1
